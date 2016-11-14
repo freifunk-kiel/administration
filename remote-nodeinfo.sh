@@ -37,6 +37,9 @@ echo -n " lon:$(uci show|grep .longitude=|cut -d= -f2)"
 echo -n " lat:$(uci show|grep .latitude=|cut -d= -f2)"
 echo    " Contact:$(uci show|grep contact|cut -d= -f2)"
 echo Mesh neighbours:
-DEV="$(iw dev|grep Interface|grep -e 'mesh0' -e 'ibss0'| awk '{ print $2 }')"
-iw dev $DEV station dump | grep -e "^Station " | awk '{ print $2 }'
+DEV_LIST="$(iw dev|grep Interface|grep -e 'mesh' -e 'ibss'| awk '{ print $2 }')"
+for DEV in $DEV_LIST
+do
+iw dev $DEV station dump | grep -e "^Station "
+done
 ENDSSH
