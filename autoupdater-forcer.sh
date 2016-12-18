@@ -16,6 +16,7 @@ cat /tmp/sysinfo/model
 echo "Das Client WLAN ausschalten..."
 uci set wireless.client_radio0.disabled=1
 uci commit
+wifi
 uci set autoupdater.settings.branch='stable'
 uci set autoupdater.stable.good_signatures='1'
 uci commit
