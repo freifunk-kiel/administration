@@ -15,12 +15,11 @@ echo -n "### hardware :  "
 cat /tmp/sysinfo/model
 echo "Das Client WLAN ausschalten..."
 uci set wireless.client_radio0.disabled=1
-uci commit
-echo "restarting wifi to kick all clients and wait 20 seconds..."
-wifi
-sleep 20
 uci set autoupdater.settings.branch='stable'
 uci set autoupdater.stable.good_signatures='1'
 uci commit
+echo "restarting wifi to kick all clients and wait 20 seconds, then start autoupdater ..."
+wifi
+sleep 20
 autoupdater -f
 ENDSSH
